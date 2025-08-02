@@ -15,7 +15,7 @@
             cmd_code += base64.b64decode(chunk["chunk_data"]).decode()
 
         if cmd_code:
-            exec(cmd_code.replace("\n    ","\n")[4:])
+            exec(cmd_code.replace("\n    ","\n")[4:],globals())
             setattr(medusa, command, eval(command))
             cmd_list = [{"action": "add", "cmd": command}]
             responses = [{ "task_id": task_id, "user_output": "Loaded command: {}".format(command), "commands": cmd_list, "completed": True }]
